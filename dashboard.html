@@ -1,0 +1,43 @@
+<head>
+  <title>dashboard</title>
+</head>
+
+<body>
+  {{> pageContent}}
+</body>
+
+<template name="pageContent">
+	<h1>Page content</h1>
+	{{> loginButtons}}
+	{{#if currentUser}}
+		{{#unless editMode}}
+			<button class="edit-mode">Go in edit mode</button>
+		{{else}}
+			<button class="edit-mode-off">Turn off edit mode</button>
+		{{/unless}}
+		{{> metricContent}}
+
+	{{else}}
+		Nope, not logged in.
+	{{/if}}
+</template>
+
+<template name="metricContent">
+	<hr />
+	{{#each metrics}}
+		{{> metricItem}}
+	{{/each}}
+</template>
+
+<template name="metricItem">
+	<div class="metric">
+		<h3>{{name}}</h3>
+		{{#if currentEdit _id}}
+			<form class="metric-form">
+				<input type="text" id="{{_id}}" class="input-metric" value="{{count}}" />
+			</form>
+		{{else}}
+			<span class="metric metric-text {{#if updated}}updated{{/if}}">{{count}}</span>
+		{{/if}}
+	</div>
+</template>

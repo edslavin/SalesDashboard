@@ -1,0 +1,13 @@
+.metric,
+.input-metric{
+	font-size:1.5em;
+}
+
+.metric.updated{
+	background-color:green;
+}
+
+.metric.updated,
+.metric{
+	transition: background-color 0.5s ease;
+}
